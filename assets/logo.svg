@@ -1,0 +1,42 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 짙은 남색 배경 그라데이션 (다크/라이트 모두 자연스러움, 투명 없음) -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16335f" />
+      <stop offset="1" stop-color="#0b1c38" />
+    </linearGradient>
+    <!-- 차트 선: 파랑 -> 초록 (현재가가 평단을 넘어 수익 구간으로 향하는 의미) -->
+    <linearGradient id="line" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="1" stop-color="#22c55e" />
+    </linearGradient>
+    <!-- 차트 아래 면 채움 (은은한 깊이감) -->
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 (불투명) -->
+  <rect width="600" height="600" fill="url(#bg)" />
+
+  <!-- 평균단가 수평선 (가독성 좋은 앰버, 점선) -->
+  <line x1="108" y1="306" x2="492" y2="306" stroke="#f8b84e" stroke-width="7"
+        stroke-linecap="round" stroke-dasharray="20 16" />
+
+  <!-- 차트 아래 면 -->
+  <path d="M108 384 L192 318 L276 346 L360 232 L444 268 L492 176 L492 384 Z"
+        fill="url(#area)" />
+
+  <!-- 주식 차트 선 -->
+  <polyline points="108,384 192,318 276,346 360,232 444,268 492,176"
+            fill="none" stroke="url(#line)" stroke-width="22"
+            stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 마지막 지점 노드 (수익 구간 강조) -->
+  <circle cx="492" cy="176" r="17" fill="#22c55e" stroke="#0b1c38" stroke-width="7" />
+
+  <!-- 계산을 의미하는 = 마크 -->
+  <rect x="262" y="438" width="76" height="16" rx="8" fill="#e8eef7" />
+  <rect x="262" y="470" width="76" height="16" rx="8" fill="#e8eef7" />
+</svg>

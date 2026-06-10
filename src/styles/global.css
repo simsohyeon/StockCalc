@@ -1,0 +1,279 @@
+/* 밝은 모드 기본 토큰 */
+:root {
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text: #0f172a;
+  --text-sub: #64748b;
+  --text-muted: #94a3b8;
+  --input-bg: #f8fafc;
+  --input-border: #cbd5e1;
+  --input-focus: #2563eb;
+  --primary: #2563eb;
+  --primary-text: #ffffff;
+  --primary-disabled: #cbd5e1;
+  --reset-bg: transparent;
+  --reset-border: #cbd5e1;
+  --error: #dc2626;
+  --divider: #f1f5f9;
+
+  --profit: #16a34a;
+  --loss: #dc2626;
+  --neutral: #64748b;
+
+  --radius: 16px;
+  --radius-sm: 12px;
+
+  color-scheme: light dark;
+}
+
+/* 다크 모드 토큰 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --text: #f8fafc;
+    --text-sub: #cbd5e1;
+    --text-muted: #94a3b8;
+    --input-bg: #0f172a;
+    --input-border: #475569;
+    --input-focus: #60a5fa;
+    --primary: #3b82f6;
+    --primary-text: #ffffff;
+    --primary-disabled: #334155;
+    --reset-bg: transparent;
+    --reset-border: #475569;
+    --error: #f87171;
+    --divider: #334155;
+
+    --profit: #4ade80;
+    --loss: #f87171;
+    --neutral: #94a3b8;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Apple SD Gothic Neo',
+    'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px calc(32px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 헤더 */
+.header__title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 4px 0 6px;
+}
+.header__desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 카드 공통 */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+}
+
+/* 입력 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field + .field {
+  margin-top: 16px;
+}
+.field__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+.input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  transition: border-color 0.15s ease;
+}
+.input-wrap:focus-within {
+  border-color: var(--input-focus);
+}
+.input-wrap--error {
+  border-color: var(--error);
+}
+.input-wrap input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: right;
+  padding: 16px 0;
+  width: 100%;
+  -moz-appearance: textfield;
+}
+.input-wrap input::-webkit-outer-spin-button,
+.input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-wrap input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.input-wrap__unit {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-sub);
+  flex-shrink: 0;
+}
+.field__error {
+  font-size: 13px;
+  color: var(--error);
+  font-weight: 500;
+}
+
+/* 버튼 */
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 17px;
+  font-weight: 700;
+  padding: 16px;
+  cursor: pointer;
+  min-height: 56px;
+}
+.btn--primary {
+  flex: 1;
+  background: var(--primary);
+  color: var(--primary-text);
+}
+.btn--primary:disabled {
+  background: var(--primary-disabled);
+  color: var(--card-bg);
+  cursor: not-allowed;
+}
+.btn--reset {
+  background: var(--reset-bg);
+  border: 1.5px solid var(--reset-border);
+  color: var(--text-sub);
+  flex-shrink: 0;
+  padding: 16px 20px;
+}
+
+/* 결과 카드 */
+.result__main-label {
+  font-size: 14px;
+  color: var(--text-sub);
+  font-weight: 600;
+  text-align: center;
+}
+.result__main-value {
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  margin: 6px 0 4px;
+  letter-spacing: -0.5px;
+}
+.result__main-change {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.result__divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 18px 0;
+  border: none;
+}
+.result__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  font-size: 15px;
+}
+.result__row-label {
+  color: var(--text-sub);
+}
+.result__row-value {
+  font-weight: 700;
+}
+
+/* 상태 색상 */
+.status-profit {
+  color: var(--profit);
+}
+.status-loss {
+  color: var(--loss);
+}
+.status-neutral {
+  color: var(--neutral);
+}
+
+/* 해석 문구 */
+.summary {
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 16px;
+  background: var(--input-bg);
+}
+.summary__title {
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.summary__body {
+  margin: 0;
+  color: var(--text-sub);
+}
+
+/* 유의사항 */
+.disclaimer {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  padding: 0 4px;
+}
+.disclaimer p {
+  margin: 0;
+}
