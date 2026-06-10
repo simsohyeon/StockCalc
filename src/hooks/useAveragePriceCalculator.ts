@@ -34,14 +34,17 @@ export function useAveragePriceCalculator() {
     });
   };
 
-  const calculate = () => {
+  // 계산 결과를 상태에 반영하고, 성공 시 결과를(실패 시 null) 반환한다.
+  const calculate = (): CalculatorResult | null => {
     const { errors: nextErrors, parsed } = validateInput(values);
     setErrors(nextErrors);
     if (!parsed) {
       setResult(null);
-      return;
+      return null;
     }
-    setResult(calculateAveragePrice(parsed));
+    const next = calculateAveragePrice(parsed);
+    setResult(next);
+    return next;
   };
 
   const reset = () => {
